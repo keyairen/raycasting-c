@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include <limits.h>
+#include <float.h>
 #include <SDL.h>
 #include "constants.h"
 
@@ -49,6 +49,10 @@ SDL_Renderer* renderer = NULL;
 int isGameRunning = FALSE;
 int ticksLastFrame = 0;
 
+Uint32* colorBuffer = NULL;
+
+SDL_Texture* colorBufferTexture;
+
 
 int initializeWindow() {
 	if (SDL_Init(SDL_INIT_EVERYTHING) != 0) {
@@ -79,6 +83,8 @@ int initializeWindow() {
 }
 
 void destroyWindow() {
+	free(colorBuffer);
+	SDL_DestroyTexture(colorBufferTexture);
 	SDL_DestroyRenderer(renderer);
 	SDL_DestroyWindow(window);
 	SDL_Quit();
@@ -95,6 +101,17 @@ void setup() {
 	player.walkSpeed = 100;
 	player.turnSpeed = 45 * (PI / 180);
 
+	// allocate the total amount of bytes in memory to hold our colorbuffer
+	colorBuffer = (Uint32*) malloc(sizeof(Uint32) * WINDOW_WIDTH * WINDOW_HEIGHT);
+
+	// create an SDL_Texture to display the colorbuffer
+	colorBufferTexture = SDL_CreateTexture(
+		renderer,
+		SDL_PIXELFORMAT_ARGB8888,
+		SDL_TEXTUREACCESS_STREAMING,
+		WINDOW_WIDTH,
+		WINDOW_HEIGHT
+	);
 }
 
 int mapHasWallAt(float x, float y) {
@@ -253,10 +270,10 @@ void castRay(float rayAngle, int stripId) {
 	// Calculate both horizontal and vertical hit distances and choose the smallest one
 	float horzHitDistance = foundHorzWallHit
 		? distanceBetweenPoints(player.x, player.y, horzWallHitX, horzWallHitY)
-		: INT_MAX;
+		: FLT_MAX;
 	float vertHitDistance = foundVertWallHit
 		? distanceBetweenPoints(player.x, player.y, vertWallHitX, vertWallHitY)
-		: INT_MAX;
+		: FLT_MAX;
 	
 	if (vertHitDistance < horzHitDistance) {
 		rays[stripId].distance = vertHitDistance;
@@ -386,9 +403,30 @@ void update() {
 	castAllRays();
 }
 
+void clearColorBuffer(Uint32 color) {
+	for (int x = 0; x < WINDOW_WIDTH; x++) {
+		for (int y = 0; y < WINDOW_HEIGHT; y++) {
+			colorBuffer[(WINDOW_WIDTH * y) + x] = color;
+		}
+	}
+}
+
+void renderColorBuffer() {
+	SDL_UpdateTexture(
+		colorBufferTexture,
+		NULL,
+		colorBuffer,
+		(int)((Uint32)WINDOW_WIDTH * sizeof(Uint32))
+	);
+	SDL_RenderCopy(renderer, colorBufferTexture, NULL, NULL);
+}
+
 void render() {
 	SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
 	SDL_RenderClear(renderer);
+
+	renderColorBuffer();
+	clearColorBuffer(0xFF000000);
 
 	renderMap();
 	renderRays();
