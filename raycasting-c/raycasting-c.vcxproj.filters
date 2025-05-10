@@ -24,6 +24,12 @@
     <ClCompile Include="textures.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="graphics.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="map.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="constants.h">
@@ -33,6 +39,12 @@
       <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="upng.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="map.h">
       <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -13,7 +13,7 @@ static const char* textureFileNames[NUM_TEXTURES] = {
     "./images/pikuma.png"
 };
 
-void loadWallTextures() {
+void loadWallTextures(void) {
 	for (int i = 0; i < NUM_TEXTURES; i++) {
         upng_t* upng;
 
@@ -30,7 +30,7 @@ void loadWallTextures() {
 	}
 }
 
-void freeWallTextures() {
+void freeWallTextures(void) {
     for (int i = 0; i < NUM_TEXTURES; i++) {
         upng_free(wallTextures[i].upngTexture);
     }

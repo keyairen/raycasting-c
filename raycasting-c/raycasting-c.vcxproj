@@ -133,12 +133,16 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="graphics.c" />
     <ClCompile Include="main.c" />
+    <ClCompile Include="map.c" />
     <ClCompile Include="textures.c" />
     <ClCompile Include="upng.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="constants.h" />
+    <ClInclude Include="graphics.h" />
+    <ClInclude Include="map.h" />
     <ClInclude Include="textures.h" />
     <ClInclude Include="upng.h" />
   </ItemGroup>
