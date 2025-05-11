@@ -140,6 +140,7 @@
     <ClCompile Include="ray.c" />
     <ClCompile Include="textures.c" />
     <ClCompile Include="upng.c" />
+    <ClCompile Include="wall.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="constants.h" />
@@ -149,6 +150,7 @@
     <ClInclude Include="ray.h" />
     <ClInclude Include="textures.h" />
     <ClInclude Include="upng.h" />
+    <ClInclude Include="wall.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
