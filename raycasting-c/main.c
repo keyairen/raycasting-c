@@ -140,7 +140,7 @@ void render(void) {
 	renderWallProjection();
 
 	renderMap();
-	//renderRays();
+	renderRays();
 	renderPlayer();
 
 	renderColorBuffer();

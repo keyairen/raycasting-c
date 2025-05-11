@@ -148,14 +148,13 @@ void castAllRays(void) {
 }
 
 void renderRays(void) {
-	//SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);
-	//for (int i = 0; i < NUM_RAYS; i++) {
-	//	SDL_RenderDrawLineF(
-	//		renderer,
-	//		MINIMAP_SCALE_FACTOR * player.x,
-	//		MINIMAP_SCALE_FACTOR * player.y,
-	//		MINIMAP_SCALE_FACTOR * rays[i].wallHitX,
-	//		MINIMAP_SCALE_FACTOR * rays[i].wallHitY
-	//	);
-	//}
+	for (int i = 0; i < NUM_RAYS; i++) {
+		drawLine(
+			MINIMAP_SCALE_FACTOR * player.x,
+			MINIMAP_SCALE_FACTOR * player.y,
+			MINIMAP_SCALE_FACTOR * rays[i].wallHitX,
+			MINIMAP_SCALE_FACTOR * rays[i].wallHitY,
+			0xFF0000FF
+		);
+	}
 }
