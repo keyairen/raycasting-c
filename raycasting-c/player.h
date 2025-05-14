@@ -2,6 +2,7 @@
 #include "constants.h"
 #include "map.h"
 #include "graphics.h"
+#include "utils.h"
 
 typedef struct Player {
 	float x;
@@ -18,4 +19,4 @@ typedef struct Player {
 extern player_t player;
 
 void movePlayer(float deltaTime);
-void renderPlayer(void);
+void renderMapPlayer(void);

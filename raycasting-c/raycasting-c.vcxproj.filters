@@ -39,6 +39,12 @@
     <ClCompile Include="wall.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="sprite.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="utils.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="constants.h">
@@ -63,6 +69,12 @@
       <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="wall.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="sprite.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="utils.h">
       <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>
